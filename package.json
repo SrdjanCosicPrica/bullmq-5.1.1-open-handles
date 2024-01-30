@@ -1,0 +1,23 @@
+{
+  "name": "bullmq-jest-memoryleak",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "test": "yarn test:setup && yarn test:run && yarn test:teardown",
+    "test:run": "jest --detectOpenHandles",
+    "test:setup": "yarn test:docker-compose up -d --remove-orphans",
+    "test:teardown": "yarn test:docker-compose rm -fsv",
+    "test:docker-compose": "COMPOSE_PROJECT_NAME=test docker-compose -f docker-compose.test.yml"
+  },
+  "dependencies": {
+    "bullmq": "5.1.1",
+    "express": "^4.18.2",
+    "ioredis": "^5.3.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  }
+}
